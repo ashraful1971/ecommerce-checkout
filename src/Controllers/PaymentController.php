@@ -60,6 +60,7 @@ class PaymentController
         }
 
         $total = $subtotal + $this->shippingCost;
+        
         $paypal = PaypalService::instance();
         header('Location: ' . $paypal->createOrder($total)?->links[1]->href);
     }

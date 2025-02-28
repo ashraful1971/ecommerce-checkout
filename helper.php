@@ -90,3 +90,19 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+
+if (!function_exists('config')) {
+    function config(string $key, mixed $default = '')
+    {
+        $configs = require('config.php');
+        
+        return isset($configs[$key]) ? $configs[$key] : $default;
+    }
+}
+
+if (!function_exists('env')) {
+    function env(string $key, mixed $default = '')
+    {
+        return isset(ENV[$key]) ? ENV[$key] : $default;
+    }
+}

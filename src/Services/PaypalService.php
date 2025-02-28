@@ -14,13 +14,13 @@ class PaypalService
 
     private function __construct()
     {
-        $this->clientId = "AXPZXOlOEUw9xhfUU78Asbqio7Yqp2flOPHDy6CF2AQ3_uRuDfWSyZGfeh3Fp1ltRIctqXa4y9OZwQX4";
-        $this->clientSecret = "EODV0Bdpt23S4_WPwXwrmsRxoP5Wp7dDYjOI4to2xYyLXFfmlqIa126e7rV9h0qugHoj77FDlSt3LjNo";
+        $this->clientId = config('paypal_client_id', '');
+        $this->clientSecret = config('paypal_client_secret', '');
 
         $this->accessToken = $this->getAccessToken();
 
         $this->client = new \GuzzleHttp\Client([
-            'base_uri' => 'https://api-m.sandbox.paypal.com',
+            'base_uri' => config('paypal_base_url', ''),
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . $this->accessToken,
@@ -73,8 +73,6 @@ class PaypalService
                     'intent' => 'CAPTURE',
                     'purchase_units' => [
                         [
-                            // "reference_id"=> "d9f80740-38f0-11e8-b467-0edd5f89f718b",
-                            // 'items' => ['name' => 'Product 1', 'quantity' => 1, 'unit_amount' => ['currency_code' => 'USD', 'value' => 10]],
                             'amount' => ['currency_code' => 'USD', 'value' => $amount],
                         ]
                     ],

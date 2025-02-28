@@ -56,14 +56,14 @@ class Routes
                 exit;
             }
 
-            if (is_array($action) && class_exists($action[0])) {
+            if (is_array($action) && class_exists($action[0]) && count($action) == 2) {
                 $object = new $action[0]();
 
                 echo $object->{$action[1]}($request);
                 exit;
             }
 
-            throw new Exception(sprintf('The second parameter must be a Closure or array of class and method.'));
+            throw new Exception(sprintf('The second parameter must be a Closure or array containing class and method.'));
             exit;
         }
 

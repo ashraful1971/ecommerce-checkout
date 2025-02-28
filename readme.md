@@ -15,6 +15,7 @@ Create a simple checkout system with PayPal payment gateway integration using va
 - Clone the repository - `git clone git@github.com:ahamed/ollyo-php-developer-task.git`
 - Run `cd ollyo-php-developer-task`
 - Run `composer install`
+- Configure paypal in a .env file
 
 ### What to do?
 1. Complete the View System
